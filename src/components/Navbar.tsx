@@ -11,15 +11,15 @@ const Navbar = () => {
   const user: User = session?.user as User;
   return (
     <nav className="p-4 md:p-6 shadow-md">
-      <div className="container mx-auto">
-        <a href="#"> MSGapp</a>
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
+        <a href="#" className="font-bold">MSGapp</a>
         {session ? (
           <>
             <span className="mr-4">
               Welcome, {user?.username || user?.email}
             </span>
             <Button
-              className="w-full md:w-auto"
+              className="w-full md:w-auto float-end"
               onClick={() => {
                 signOut();
               }}
@@ -30,7 +30,7 @@ const Navbar = () => {
         ) : (
           <Link href="/sign-in">
             <Button
-              className="w-full md:w-auto"
+              className="w-full md:w-auto float-end"
               onClick={() => {
                 signIn();
               }}
