@@ -43,13 +43,17 @@ const Page = () => {
       setValue("acceptMessages", response.data.isAcceptingMessage);
     } catch (error) {
       const axiosError = error as AxiosError<apiResponse>;
+      console.log(error)
       toast({
         title: "Error",
         description:
-          axiosError.response?.data.message ||
+          axiosError.response?.data.message ??
           "Failed to fetch Message Acceptance Status",
         variant: "destructive",
       });
+    }
+    finally {
+      setIsSwitchLoading(false);
     }
   }, [setValue, toast]);
 
@@ -114,9 +118,13 @@ const Page = () => {
     }
   };
 
-  const {username} = session?.user as User
+  if (!session || !session.user) {
+    return <div></div>;
+  }
+
+  const {username} = session.user as User
   //read about extracting baseurl
-  const baseUrl = '${window.location.protocol}//${window.location.host}'
+  const baseUrl = window.location.protocol+"//"+window.location.host
   const profileUrl = `${baseUrl}/u/${username}`
 
   const copyToClipboard = ()=>{

@@ -11,9 +11,6 @@ import messages from '@/messages.json';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-
-//add environment variables
-//Public profile link
 //integrate ai
 
 export default function Home() {

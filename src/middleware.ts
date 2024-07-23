@@ -5,6 +5,11 @@ export { default } from "next-auth/middleware";
 // This is an example of how to read a JSON Web Token from an API route
 import { getToken } from "next-auth/jwt";
 
+export const config = {
+  matcher: ["/sign-in", "/sign-up", "/", "/dashboard/:path*", "/verify/:path*"],
+};
+
+
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
@@ -15,7 +20,7 @@ export async function middleware(request: NextRequest) {
     (url.pathname.startsWith("/sign-in") ||
       url.pathname.startsWith("/sign-up") ||
       url.pathname.startsWith("/verify") ||
-      url.pathname.startsWith("/"))
+      url.pathname==="/")
   ) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
@@ -26,6 +31,3 @@ export async function middleware(request: NextRequest) {
 }
 
 // See "Matching Paths" below to learn more
-export const config = {
-  matcher: ["/sign-in", "/sign-up", "/", "/dashboard/:path*", "/verify/:path*"],
-};

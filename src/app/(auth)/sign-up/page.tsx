@@ -97,8 +97,8 @@ function Page() {
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-3xl font-bold">Sign up</h1>
-          <p className="text-sm text-gray-500">Sign up to get started</p>
+          <h1 className="text-3xl font-bold">Dive into a new Messaging Experience</h1>
+          <p className="text-sm text-gray-500 mt-3">Sign up to get started</p>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -128,43 +128,29 @@ function Page() {
                   >
                     {usernameMsg}
                   </p>
-                  <FormDescription>SignUp form : Username</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <FormField
-              control={form.control}
               name="email"
+              control={form.control}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="email@example.com" {...field} />
-                  </FormControl>
-                  <FormDescription>SignUp form : Email</FormDescription>
+                  <Input {...field} name="email" />
+                  <FormDescription className='text-muted text-gray-500 text-sm'>We will send you a verification code</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <FormField
-              control={form.control}
               name="password"
+              control={form.control}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="Password"
-                      {...field}
-                      onChange={(e) => {
-                        field.onChange(e);
-                        setUsername(e.target.value);
-                      }}
-                    />
-                  </FormControl>
-                  <FormDescription>Password</FormDescription>
+                  <Input type="password" {...field} name="password" />
                   <FormMessage />
                 </FormItem>
               )}
