@@ -45,7 +45,7 @@ export async function POST(req: Request) {
       { status: 200 }
     );
   } catch (err) {
-    console.log("failed to update user status to accept messages", err);
+    //console.error("An unexpected error occurred:", err);
     return Response.json(
       {
         success: false,
@@ -87,14 +87,14 @@ export async function GET(req: Request) {
         success: true,
         isAcceptingMessage: foundUSer.isAccceptingMessage,
       },
-      { status: 500 }
+      { status: 200 }
     );
   } catch (error) {
-    console.log("failed to update user status to accept messages", error);
+    console.error("An unexpected error occurred:", error);
     return Response.json(
       {
         success: false,
-        message: "error in getting message accepting status",
+        message: "error in getting message acceptance status",
       },
       { status: 500 }
     );

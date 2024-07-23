@@ -76,7 +76,7 @@ const Page = () => {
           title: "Error",
           description:
             axiosError.response?.data.message ||
-            "Failed to fetch Message Acceptance Status",
+            "Failed to fetch Messages",
           variant: "destructive",
         });
       } finally {
