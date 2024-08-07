@@ -23,8 +23,8 @@ export default function Home() {
             </h1>
             <p className="text-lg md:text-xl text-center mb-8">Stay connected with your friends and colleagues with our secure messaging app.</p>
             <div className="flex space-x-4">
-                <a href="#" className="bg-white text-blue-500 hover:bg-blue-400 hover:text-white py-3 px-6 rounded-lg text-lg font-semibold transition duration-300">Get Started</a>
-                <a href="#" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-500 py-3 px-6 rounded-lg text-lg font-semibold transition duration-300">Learn More</a>
+                <a href="\sign-in" className="bg-white text-blue-500 hover:bg-blue-400 hover:text-white py-3 px-6 rounded-lg text-lg font-semibold transition duration-300">Get Started</a>
+                <a href="#" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-500 py-3 px-6 rounded-lg text-lg font-semibold transition duration-300">Github Repo</a>
             </div>
         </div>
     </section>

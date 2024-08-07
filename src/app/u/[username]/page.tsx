@@ -35,17 +35,26 @@ const Page = () => {
     resolver: zodResolver(messageSchema),
   });
 
-  const onSubmit= async (data: z.infer<typeof messageSchema>) =>{
+  const fetchAIMessages= async() =>{
     try {
-      const response = await axios.post<apiResponse>("api/send-message",{
+      const response = await axios.get<apiResponse>(`/api/suggest-messages`);
+      
+    } catch (error) {
+      
+    }
+  }
+
+  const onSubmit = async (data: z.infer<typeof messageSchema>) => {
+    try {
+      const response = await axios.post<apiResponse>("api/send-message", {
         ...data,
-        username
-      })
+        username,
+      });
       toast({
-        title: "Message Sent", 
+        title: "Message Sent",
         description: response.data.message,
       });
-      form.reset({...form.getValues(),content: ''})
+      form.reset({ ...form.getValues(), content: "" });
     } catch (error) {
       console.log("Message not sent", error);
       const AxiosError = error as AxiosError<apiResponse>;
@@ -56,41 +65,60 @@ const Page = () => {
         variant: "destructive",
       });
     }
-  }
+  };
+
+
 
   return (
     <div>
-      <h1 className="flex w-full justify-center">Public Profile Link</h1>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="content"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Message</FormLabel>
-                <FormControl>
-                  <div className="grid w-full gap-1.5">
-                    <Label htmlFor="message">
-                      Send anonymous message to {username}
-                    </Label>
-                    <Textarea
-                      placeholder="Type your message here."
-                      id="message"
-                      {...field}
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit" >
-            Send
-          </Button>
-        </form>
-      </Form>
+      <div className="shadow-md p-3">
+        <div className="flex w-full justify-between items-center px-8 font-bold text-xl my-5 tracking-wide">
+          <div>MSGapp</div>
+          <div>Public Profile Link</div>
+          <Link href="/sign-in">
+            <button className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+              <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Register Now!!
+              </span>
+            </button>
+          </Link>
+        </div>
+      </div>
 
+      <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-full max-w-6xl">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="content"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <div className="grid w-full gap-1.5">
+                      <Label htmlFor="message">
+                        Send anonymous message to {username}
+                      </Label>
+                      <Textarea
+                        placeholder="Type your message here."
+                        id="message"
+                        {...field}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit">Send</Button>
+          </form>
+        </Form>
+        <Separator className="my-4"/>
+
+          <div >
+            
+          </div>
+
+      </div>
       
     </div>
   );
