@@ -10,7 +10,7 @@ export async function sendVerificationEmail(
 ): Promise<apiResponse>{
     try{
         await resend.emails.send({
-            from: 'onboarding@resend.dev',
+            from: 'onboarding@msgapp.vercel',
             to: email,
             subject: 'MSGAPP Verification Mail',
             react: VerificationEmail({username , otp: verifyCode}),
