@@ -11,7 +11,7 @@ import messages from '@/messages.json';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-//integrate ai
+//TODO: integrate ai
 
 export default function Home() {
   return (
